@@ -123,7 +123,7 @@ def spin(balance):
     print(f"You are betting ${bet} on {lines} lines. Total bet is: ${total_bet}")
 
     slots = get_spin(ROWS, COLS, symbol_count)
-    print_slot_machine(slots, lines)  # Pass the number of lines to print
+    print_slot_machine(slots, lines) 
     winnings, winning_lines = check_winnings(slots, lines, bet, symbol_values)
     print(f"You won {winnings}!")
 
