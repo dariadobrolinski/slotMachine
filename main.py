@@ -1,10 +1,10 @@
 import random
 
-MAX_LINES = 3
-MAX_BET = 100
+MAX_LINES = 5
+MAX_BET = 1000
 MIN_BET = 1
 
-ROWS = 3
+ROWS = 5
 COLS = 3
 
 symbol_count = {
@@ -109,9 +109,7 @@ def get_bet():
         
     return amount
 
-
-def main():
-    balance = deposit()
+def spin(balance):
     lines = get_line_number()
     while True:
         bet = get_bet()
@@ -130,8 +128,21 @@ def main():
     print(f"You won {winnings}!")
 
     if len(winning_lines) > 0:
-        print(f"You won on:", *winning_lines)
+        print(f"You won on lines:", *winning_lines)
     else:
         print("Sorry, you didn't win on any lines :(")
+
+    return winnings - total_bet
+
+def main():
+    balance = deposit()
+    while True:
+        print(f"Current balance is ${balance}.")
+        answer = input("Press enter to play (q to quit).")
+        if answer == "q":
+            break
+        balance += spin(balance)
+    
+    print(f"You left with ${balance}!")
 
 main()
